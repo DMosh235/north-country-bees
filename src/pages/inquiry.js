@@ -12,7 +12,7 @@ const Inquiry = () => {
   }
 
   return (
-    <div>
+    <div className="page-content">
       <h1>Inquiry</h1>
       <form onSubmit={handleSubmit}>
         <div>

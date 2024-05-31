@@ -14,17 +14,31 @@ body {
   padding: 0;
 }
 
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
+nav {
   background-color: var(--primary-color);
-  padding: 10px 0;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; /* Add relative positioning */
 }
 
-nav li {
+.nav-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
   margin: 0 10px;
 }
 
@@ -39,19 +53,163 @@ nav a:hover {
   color: var(--secondary-color-2);
 }
 
-.home {
+.logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.current-page {
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.current-page .arrow {
+  font-size: 0.7em;
+}
+
+.page-content {
   padding: 20px;
   max-width: 800px;
   margin: auto;
 }
 
-.home h1 {
+.page-content h1 {
   font-size: 3em;
   color: var(--secondary-color-1);
 }
 
-.home p {
+.page-content p {
   font-size: 1.2em;
   line-height: 1.6;
   margin-bottom: 20px;
+}
+
+/* Keyframe animation for dropdown */
+@keyframes dropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%; /* Full width */
+    text-align: center;
+    position: absolute;
+    top: 100%; /* Position right below the navbar */
+    left: 0; /* Center the dropdown */
+    background-color: var(--primary-color);
+    z-index: 1;
+    animation: dropdown 0.3s ease forwards; /* Add smooth dropdown animation */
+    padding: 10px 0; /* Add padding */
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    width: 100%; /* Ensure full width for center alignment */
+  }
+
+  .nav-links li a {
+    text-align: center; /* Center align text */
+    display: block; /* Ensure block display for full width */
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .current-page {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  nav a {
+    font-size: 0.9em;
+  }
+
+  .page-content {
+    padding: 20px;
+    max-width: 100%; /* Full width for mobile */
+    text-align: center; /* Center align text */
+  }
+
+  .page-content p {
+    text-align: center; /* Center align paragraph text */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links li {
+    margin: 5px 0;
+  }
+
+  nav a {
+    font-size: 0.8em;
+  }
+
+  .logo {
+    height: 30px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .page-content {
+    padding: 20px;
+    max-width: 100%; /* Full width for mobile */
+    text-align: center; /* Center align text */
+  }
+
+  .page-content p {
+    text-align: center; /* Center align paragraph text */
+  }
+}
+
+/* Ensure dropdown is hidden on non-mobile screens */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important; /* Ensure flex display for desktop */
+    justify-content: space-evenly; /* Ensure even spacing */
+    flex-direction: row; /* Ensure row direction */
+  }
+
+  .current-page {
+    display: none; /* Hide current page on desktop */
+  }
+
+  .hamburger {
+    display: none; /* Hide hamburger on desktop */
+  }
 }
